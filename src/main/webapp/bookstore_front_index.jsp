@@ -13,14 +13,16 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%--使用javabean包装java类，将其引入到该页面中--%>
 <jsp:useBean id="bean_Connction_DataBase" class="bookshop.suyu.Connection_DataBase"></jsp:useBean>
-<%--使用javabean包装java类，将其引入到该页面中--%>
-<jsp:useBean id="bean_book" class="bookshop.suyu.Book"></jsp:useBean>
 <%--查询book表的所有数据，返回一个结果集合resultSet_book--%>
 <% ResultSet resultSet_book = Connection_DataBase.query("select * from bookshop.book_list");%>
 <%
     //设置默认登陆状态为无用户登录
     if (session.getAttribute("user_name") == null) {
         session.setAttribute("user_name", "Login");
+    }
+    //设置默认头像为游客头像
+    if(session.getAttribute("user_image")==null){
+        session.setAttribute("user_image","images/profile.png");
     }
 %>
 <%
@@ -46,40 +48,40 @@
     while (resultSet_book.next()) {
         try {
             //访问结果集合resultSet_book用List装Book对象的数据
-            bean_book = new Book();
-            bean_book.setBook_id(resultSet_book.getString(1));
-            bean_book.setBook_name(resultSet_book.getString(2));
-            bean_book.setBook_subname(resultSet_book.getString(3));
-            bean_book.setBook_introduce(resultSet_book.getString(4));
-            bean_book.setBook_price(resultSet_book.getString(5));
-            bean_book.setBook_picture(resultSet_book.getString(6));
-            bean_book.setBook_number(resultSet_book.getString(7));
-            bean_book.setBook_type(resultSet_book.getString(8));
-            if (bean_book.getBook_type().equals("1")) {
-                bookArrayList_type1.add(bean_book);
+            Book book = new Book();
+            book.setBook_id(resultSet_book.getString(1));
+            book.setBook_name(resultSet_book.getString(2));
+            book.setBook_subname(resultSet_book.getString(3));
+            book.setBook_introduce(resultSet_book.getString(4));
+            book.setBook_price(resultSet_book.getString(5));
+            book.setBook_picture(resultSet_book.getString(6));
+            book.setBook_number(resultSet_book.getString(7));
+            book.setBook_type(resultSet_book.getString(8));
+            if (book.getBook_type().equals("1")) {
+                bookArrayList_type1.add(book);
             }
-            if (bean_book.getBook_type().equals("2")) {
-                bookArrayList_type2.add(bean_book);
+            if (book.getBook_type().equals("2")) {
+                bookArrayList_type2.add(book);
             }
-            if (bean_book.getBook_type().equals("3")) {
-                bookArrayList_type3.add(bean_book);
+            if (book.getBook_type().equals("3")) {
+                bookArrayList_type3.add(book);
             }
-            if (bean_book.getBook_type().equals("4")) {
-                bookArrayList_type4.add(bean_book);
+            if (book.getBook_type().equals("4")) {
+                bookArrayList_type4.add(book);
             }
-            if (bean_book.getBook_type().equals("5")) {
-                bookArrayList_type5.add(bean_book);
+            if (book.getBook_type().equals("5")) {
+                bookArrayList_type5.add(book);
             }
-            if (bean_book.getBook_type().equals("6")) {
-                bookArrayList_type6.add(bean_book);
+            if (book.getBook_type().equals("6")) {
+                bookArrayList_type6.add(book);
             }
-            if (bean_book.getBook_type().equals("7")) {
-                bookArrayList_type7.add(bean_book);
+            if (book.getBook_type().equals("7")) {
+                bookArrayList_type7.add(book);
             }
-            if (bean_book.getBook_type().equals("8")) {
-                bookArrayList_type8.add(bean_book);
+            if (book.getBook_type().equals("8")) {
+                bookArrayList_type8.add(book);
             }
-            bookArrayList.add(bean_book);
+            bookArrayList.add(book);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -119,7 +121,12 @@
     <section class="intro">
         <div class="column">
             <h3>Su yu&nbsp;</h3>
-            <img src="images/head_picture.png" alt="" width="25%" height="25%"></div>
+            <img src="images/admin_picture.png" alt="" width="25%" height="25%" onclick= call_me()></div>
+        <script>
+            function call_me() {
+                window.location = "bookstore_call_me.jsp";
+            }
+        </script>
         <div class="column">
             <p>A blockhead</p>
             <p>First of all, thank you very much for visiting this website,
@@ -133,27 +140,12 @@
     <div class="gallery">
         <%--        <%=%>标签用于从后端（服务器）读取数据到前端（用户）--%>
         <div class="thumbnail"><a href="book_introduce.jsp?book_name=<%=bookArrayList.get(0).getBook_name()%>
-        &book_picture=<%=bookArrayList.get(0).getBook_picture()%>
-        &book_price=<%=bookArrayList.get(0).getBook_price()%>
-        &book_number=<%=bookArrayList.get(0).getBook_number()%>
-        &book_introduce=<%=bookArrayList.get(0).getBook_introduce()%>
-        ">
-            <img src="<%=bookArrayList.get(0).getBook_picture()%>" alt="" width="350" class="cards"/></a>
-            <h4><%=bookArrayList.get(0).getBook_name()%>
-            </h4>
-            <p class="tag"><%=bookArrayList.get(0).getBook_subname()%>
-            </p>
-            <p class="text_column"><%=bookArrayList.get(0).getBook_introduce()%>
-            </p>
-        </div>
-        <%--        <%=%>标签用于从后端（服务器）读取数据到前端（用户）--%>
-        <div class="thumbnail"><a href="book_introduce.jsp?book_name=<%=bookArrayList.get(23).getBook_name()%>
         &book_picture=<%=bookArrayList.get(23).getBook_picture()%>
         &book_price=<%=bookArrayList.get(23).getBook_price()%>
         &book_number=<%=bookArrayList.get(23).getBook_number()%>
         &book_introduce=<%=bookArrayList.get(23).getBook_introduce()%>
         ">
-            <img src="<%=bookArrayList.get(23).getBook_picture()%>" alt="" width="200" class="cards"/></a>
+            <img src="<%=bookArrayList.get(23).getBook_picture()%>" alt="" width="350" class="cards"/></a>
             <h4><%=bookArrayList.get(23).getBook_name()%>
             </h4>
             <p class="tag"><%=bookArrayList.get(23).getBook_subname()%>
@@ -162,18 +154,33 @@
             </p>
         </div>
         <%--        <%=%>标签用于从后端（服务器）读取数据到前端（用户）--%>
-        <div class="thumbnail"><a href="book_introduce.jsp?book_name=<%=bookArrayList.get(40).getBook_name()%>
-        &book_picture=<%=bookArrayList.get(40).getBook_picture()%>
-        &book_price=<%=bookArrayList.get(40).getBook_price()%>
-        &book_number=<%=bookArrayList.get(40).getBook_number()%>
-        &book_introduce=<%=bookArrayList.get(40).getBook_introduce()%>
+        <div class="thumbnail"><a href="book_introduce.jsp?book_name=<%=bookArrayList.get(23).getBook_name()%>
+        &book_picture=<%=bookArrayList.get(0).getBook_picture()%>
+        &book_price=<%=bookArrayList.get(0).getBook_price()%>
+        &book_number=<%=bookArrayList.get(0).getBook_number()%>
+        &book_introduce=<%=bookArrayList.get(0).getBook_introduce()%>
         ">
-            <img src="<%=bookArrayList.get(40).getBook_picture()%>" alt="" width="350" class="cards"/></a>
-            <h4><%=bookArrayList.get(40).getBook_name()%>
+            <img src="<%=bookArrayList.get(0).getBook_picture()%>" alt="" width="200" class="cards"/></a>
+            <h4><%=bookArrayList.get(0).getBook_name()%>
             </h4>
-            <p class="tag"><%=bookArrayList.get(40).getBook_subname()%>
+            <p class="tag"><%=bookArrayList.get(0).getBook_subname()%>
             </p>
-            <p class="text_column"><%=bookArrayList.get(40).getBook_introduce()%>
+            <p class="text_column"><%=bookArrayList.get(0).getBook_introduce()%>
+            </p>
+        </div>
+        <%--        <%=%>标签用于从后端（服务器）读取数据到前端（用户）--%>
+        <div class="thumbnail"><a href="book_introduce.jsp?book_name=<%=bookArrayList.get(40).getBook_name()%>
+        &book_picture=<%=bookArrayList.get(33).getBook_picture()%>
+        &book_price=<%=bookArrayList.get(33).getBook_price()%>
+        &book_number=<%=bookArrayList.get(33).getBook_number()%>
+        &book_introduce=<%=bookArrayList.get(33).getBook_introduce()%>
+        ">
+            <img src="<%=bookArrayList.get(33).getBook_picture()%>" alt="" width="350" class="cards"/></a>
+            <h4><%=bookArrayList.get(33).getBook_name()%>
+            </h4>
+            <p class="tag"><%=bookArrayList.get(33).getBook_subname()%>
+            </p>
+            <p class="text_column"><%=bookArrayList.get(33).getBook_introduce()%>
             </p>
         </div>
         <div class="thumbnail"><a href="book_introduce.jsp?book_name=<%=bookArrayList.get(22).getBook_name()%>

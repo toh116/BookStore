@@ -1,7 +1,8 @@
 @charset "UTF-8";
 /* Body */
 body {
-    font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
+    font-family: 微软雅黑;
+    font-weight: bold;
     background-color: #FFFFFF;
     margin: 0;
 }
@@ -120,6 +121,8 @@ header {
 }
 
 .cards {
+    font-family: 微软雅黑;
+    font-weight: bold;
     width: 100%;
     height: auto;
     max-width: 400px;

@@ -10,9 +10,11 @@
     //接收表单请求，查看表单中名称为"Logout"的内容，如果其内容为"Login"，则向服务器申请重置登录状态
     //user_message.jsp里面有个<form>表单，其中button按钮的value为"Logout"
     if (request.getParameter("Logout").equals("Logout")) {
-        //将用户名重设为Login，恢复无登录状态
-        session.setAttribute("user_name", "Login");
+        //将用户名session销毁
+        session.removeAttribute("user_name");
+        //将用户图片session销毁
+        session.removeAttribute("user_image");
         //返回主页
-        pageContext.forward("front_index.jsp");
+        pageContext.forward("bookstore_front_index.jsp");
     }
 %>

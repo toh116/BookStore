@@ -6,7 +6,7 @@ a:hover {
 
 /*header*/
 header {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 微软雅黑;
     color: rgba(146, 146, 146, 1.00);
     font-size: 16px;
     font-style: normal;
@@ -44,7 +44,7 @@ header {
 
 /* Offer text banner*/
 #offer {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 微软雅黑;
     clear: both;
     background-color: rgba(246, 246, 246, 1.00);
     color: rgba(146, 146, 146, 1.00);
@@ -62,7 +62,7 @@ header {
 
 /* Sidebar */
 #content .sidebar {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 微软雅黑;
     color: rgba(146, 146, 146, 1.00);
     float: left;
     width: 20%;
@@ -124,6 +124,7 @@ header {
 
 /* Each product Information in the catalog */
 .mainContent .productRow .productInfo {
+    font-family: 微软雅黑;
     float: left;
     padding-left: 5%;
     padding-right: 5%;
@@ -132,7 +133,7 @@ header {
 
 /* Prices of a products in catalog */
 .productRow .productInfo .price {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 微软雅黑;
     color: rgba(146, 146, 146, 1.00);
     font-size: 22px;
     position: relative;
@@ -144,9 +145,8 @@ header {
     position: relative;
     top: -37px;
     font-size: 14px;
-    font-family: source-sans-pro, sans-serif;
+    font-family: 微软雅黑;
     font-style: normal;
-    font-weight: 200;
     color: rgba(146, 146, 146, 1.00);
     white-space: pre-wrap;
 }
@@ -170,7 +170,7 @@ header {
     clear: both;
     overflow: auto;
     background-color: rgba(208, 207, 207, 1.00);
-    font-family: source-sans-pro, sans-serif;
+    font-family: 微软雅黑;
     font-style: normal;
     font-weight: 200;
     line-height: 1.8;

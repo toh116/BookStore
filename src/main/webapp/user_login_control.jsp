@@ -20,6 +20,7 @@
             if (user_password.equals(resultSet.getString(3))) {
                 //若一致则将将用户名保存到session中
                 session.setAttribute("user_name", resultSet.getString(2));
+                session.setAttribute("user_image", resultSet.getString(4));
                 //销毁用户id和password，应该会安全点
                 session.removeAttribute("user_id");
                 session.removeAttribute("user_password");

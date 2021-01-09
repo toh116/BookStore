@@ -33,9 +33,9 @@
         <div id="logo">
             <!-- <img src="logoImage.png" alt="sample logo"> -->
             <!-- Company Logo text -->
-            <a href="front_index.jsp" class="not_underline"> Home</a></div>
-        <div id="headerLinks"><a href="user_login.jsp" title="user"><%=session.getAttribute("user_name")%>
-        </a><a href="cart.jsp" id="href_link" title="Cart">Cart</a>
+            <a href="bookstore_front_index.jsp" class="not_underline"> Home</a></div>
+        <div id="headerLinks"><a href="user_login.jsp" title="user"><img src="<%=session.getAttribute("user_image")%>" width="5%" height="5%"><%=session.getAttribute("user_name")%>
+        </a><a href="bookstore_shopping_cart.jsp" id="href_link" title="Cart">Cart</a>
         </div>
     </header>
     <section id="offer">
@@ -87,7 +87,7 @@
                     <p class="price">《<%=book_name%>》<br>￥ <%=book_price%>
                     </p>
                     <p class="productContent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;库存：<%=book_number%>
-                        <br><br><%=book_introduce%>
+                        <br><%=book_introduce%>
                     </p>
                     <input type="button" name="button" value="Buy" class="buyButton" onclick="login()">
                     <script>
@@ -99,8 +99,6 @@
                             //如果用户处于无登录状态，则跳转到用户登陆界面
                             if (user_name.includes("Login")) {
                                 window.location = "user_login.jsp";
-                            } else {
-                                window.location = "cart.jsp"
                             }
                         }
                     </script>
@@ -118,7 +116,7 @@
         </div>
         <div class="footerlinks">
             <p><a href="admin_login.jsp">后台管理 </a></p>
-            <p><a href="call_me.jsp" title="Link">联系我们</a></p>
+            <p><a href="bookstore_call_me.jsp" title="Link">联系我们</a></p>
             <p><a href="https://www.microsoft.com/zh-cn/" title="Link">帮助</a></p>
         </div>
     </footer>

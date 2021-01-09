@@ -68,9 +68,9 @@
         <div id="logo">
             <!-- <img src="logoImage.png" alt="sample logo"> -->
             <!-- Company Logo text -->
-            <a href="front_index.jsp" class="not_underline"> Home</a></div>
-        <div id="headerLinks"><a href="user_login.jsp" title="user"><%=session.getAttribute("user_name")%>
-        </a><a href="cart.jsp" title="Cart">Cart</a>
+            <a href="bookstore_front_index.jsp" class="not_underline"> Home</a></div>
+        <div id="headerLinks"><a href="user_login.jsp" title="user"><img src="<%=session.getAttribute("user_image")%>" width="5%" height="5%"><%=session.getAttribute("user_name")%>
+        </a><a href="bookstore_shopping_cart.jsp" title="Cart">Cart</a>
         </div>
     </header>
     <section id="offer">
@@ -160,7 +160,7 @@
         </div>
         <div class="footerlinks">
             <p><a href="admin_login.jsp">后台管理 </a></p>
-            <p><a href="call_me.jsp" title="Link">联系我们</a></p>
+            <p><a href="bookstore_call_me.jsp" title="Link">联系我们</a></p>
             <p><a href="https://www.microsoft.com/zh-cn/" title="Link">帮助</a></p>
         </div>
     </footer>

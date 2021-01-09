@@ -1,13 +1,9 @@
 @font-face {
-    font-family: "iconfont";
-    src: url('iconfont.css'); /* IE9 */
-    src: url('iconfont.css') format('embedded-opentype'), /* IE6-IE8 */ format('woff2'),
-    url('iconfont.css') format('woff'),
-    url('iconfont.css') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */ url('iconfont.css') format('svg'); /* iOS 4.1- */
+    font-family: 微软雅黑;
 }
 
 .iconfont {
-    font-family: "iconfont" !important;
+    font-family: 微软雅黑, serif;
     font-size: 16px;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
