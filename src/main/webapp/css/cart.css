@@ -1,103 +1,114 @@
 @charset "utf-8";
 /* CSS Document */
 
-body{
-	overflow: hidden;
-	text-align: center;
-	
+body {
+    overflow: hidden;
+    text-align: center;
+
 }
-.car{
-	font-family: 微软雅黑, serif;
-	font-weight: bold;
-	width:60%;
-	border: 1px solid #6DC7D0;
-	border-radius: 18px;
-	margin-left: 300px;
-	
-	
+
+.car {
+    font-family: 微软雅黑, serif;
+    font-weight: bold;
+    width: 60%;
+    border: 1px solid #6DC7D0;
+    border-radius: 18px;
+    margin-left: 300px;
 }
-.car .good{
-	font-family: 微软雅黑, serif;
-	font-weight: bold;
-	background-color: #6DC7D0;
-	height:55px;
-	font-size: 22px;
-	color:white;
-	line-height: 55px;
-	border-radius: 18px 18px 0 0;
-	margin-bottom: 20px;
-	
+
+.car .good {
+    font-family: 微软雅黑, serif;
+    font-weight: bold;
+    background-color: #6DC7D0;
+    height: 55px;
+    font-size: 22px;
+    color: white;
+    line-height: 55px;
+    border-radius: 18px 18px 0 0;
+    margin-bottom: 20px;
 }
-.car .good table{
-	width:100%;
+
+.car .good table {
+    width: 100%;
 }
-.car .goods{
-	height:45px;
-	line-height: 45px;
-	font-size: 20px;
-	font-weight: 200;
+
+.car .goods {
+    height: 45px;
+    line-height: 45px;
+    font-size: 20px;
+    font-weight: 200;
 }
-.car .goods table{
-	width:100%;
+
+.car .goods table {
+    width: 100%;
 }
-.car .goods table .btn1{
-	width: 70px;
-	height:28px;
-	border: 2px solid #46B3E6;
-	background-color: white;
-	color: #46B3E6;
-	border-radius: 4px;
-	font-weight: 600;
+
+.car .goods table .btn1 {
+    width: 70px;
+    height: 28px;
+    border: 2px solid #46B3E6;
+    background-color: white;
+    color: #46B3E6;
+    border-radius: 4px;
+    font-weight: 600;
 }
-.car .goods table button:hover{
-	background-color: #46B3E6;
-	color: white;
+
+.car .goods table button:hover {
+    background-color: #46B3E6;
+    color: white;
 }
-.car .goods1{
-	margin-top: 10px;
-	height:50px;
-	font-size: 19px;
-	color:white;
-	line-height: 50px;
-	font-weight: 200;
-	border-radius:0 0 10px 10px ;
+
+.car .goods1 {
+    margin-top: 10px;
+    height: 50px;
+    font-size: 19px;
+    color: white;
+    line-height: 50px;
+    font-weight: 200;
+    border-radius: 0 0 10px 10px;
 }
-.car .goods2{
-	border-top: 1px solid #F88020;
-	margin-top: 10px;
-	height:50px;
-	font-size: 19px;
-	line-height: 50px;
-	font-weight: 200;
-	border-radius:0 0 10px 10px ;
+
+.car .goods2 {
+    border-top: 1px solid #6DC7D0;
+    margin-top: 10px;
+    height: 50px;
+    font-size: 19px;
+    line-height: 50px;
+    font-weight: 200;
+    border-radius: 0 0 10px 10px;
 }
-.car .goods1 table{
-	
-	width:100%;
+
+.car .goods1 table {
+
+    width: 100%;
 }
-.car .goods1 .btn2{
-	width: 70px;
-	height:28px;
-	border: 2px solid #6DC7D0;
-	background-color: white;
-	color: #6DC7D0;
-	border-radius: 4px;
-	font-weight: 600;
+
+.car .goods1 .btn2 {
+    width: 70px;
+    height: 28px;
+    border: 2px solid #6DC7D0;
+    background-color: white;
+    color: #6DC7D0;
+    border-radius: 4px;
+    font-weight: 600;
 }
-.car .goods1 .btn2:hover{
-	color:white;
-	background-color: #6DC7D0;
+
+.car .goods1 .btn2:hover {
+    color: white;
+    background-color: #6DC7D0;
 }
-.car .goods1 .btn3{
-	width: 80px;
-	height:30px;
-	border: 2px solid #B3B3B3;
-	background-color: white;
-	color: #B3B3B3;
-	border-radius: 4px;
-	font-weight: 600;
+
+.car .goods1 .btn3 {
+    width: 80px;
+    height: 30px;
+    border: 2px solid #B3B3B3;
+    background-color: white;
+    color: #B3B3B3;
+    border-radius: 4px;
+    font-weight: 600;
 }
-.car .goods1 .btn3:hover{
-	color:white;
-	background-color:#B3B3B3 ;
+
+.car .goods1 .btn3:hover {
+    color: white;
+    background-color: #B3B3B3;
 }

@@ -56,7 +56,7 @@
         <div id="logo">
             <!-- <img src="logoImage.png" alt="sample logo"> -->
             <!-- Company Logo text -->
-            <a href="bookstore_front_index.jsp" class="not_underline"> Home</a></div>
+            <a href="front_index.jsp" class="not_underline"> Home</a></div>
         <div id="headerLinks"><a href="user_login.jsp" title="Login/Register">Login/Register</a><a href="#"
                                                                                                    title="Cart">Cart</a>
         </div>

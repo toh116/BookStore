@@ -15,6 +15,6 @@
         //将用户图片session销毁
         session.removeAttribute("user_image");
         //返回主页
-        pageContext.forward("bookstore_front_index.jsp");
+        pageContext.forward("front_index.jsp");
     }
 %>

@@ -21,8 +21,8 @@
         session.setAttribute("user_name", "Login");
     }
     //设置默认头像为游客头像
-    if(session.getAttribute("user_image")==null){
-        session.setAttribute("user_image","images/profile.png");
+    if (session.getAttribute("user_image") == null) {
+        session.setAttribute("user_image", "images/profile.png");
     }
 %>
 <%
@@ -121,7 +121,7 @@
     <section class="intro">
         <div class="column">
             <h3>Su yu&nbsp;</h3>
-            <img src="images/admin_picture.png" alt="" width="25%" height="25%" onclick= call_me()></div>
+            <img src="images/admin_picture.png" alt="" width="25%" height="25%" onclick=call_me()></div>
         <script>
             function call_me() {
                 window.location = "bookstore_call_me.jsp";

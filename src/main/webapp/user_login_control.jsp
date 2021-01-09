@@ -20,7 +20,12 @@
             if (user_password.equals(resultSet.getString(3))) {
                 //若一致则将将用户名保存到session中
                 session.setAttribute("user_name", resultSet.getString(2));
-                session.setAttribute("user_image", resultSet.getString(4));
+                //如果用户没有设置头像的话，将其头像设置为默认头像，否则设置为用户的头像
+                if (resultSet.getString(4) == null || resultSet.getString(4).equals("")) {
+                    session.setAttribute("user_image", "images/profile.png");
+                } else {
+                    session.setAttribute("user_image", resultSet.getString(4));
+                }
                 //销毁用户id和password，应该会安全点
                 session.removeAttribute("user_id");
                 session.removeAttribute("user_password");

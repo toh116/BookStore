@@ -26,21 +26,22 @@
     <title>表格测试</title>
 </head>
 <body>
-    <table border="1">
-        <tr>
-            <td>id</td>
-            <td>name</td>
-            <td>pass</td>
-        </tr>
-        <%
-            for (User user:userArrayList) {
-                out.println("<tr>"
-                        +"<td>"+user.getUser_id()+"</td>"+
-                        "<td>"+user.getUser_name()+"</td>"+
-                        "<td>"+user.getUser_password()+"</td>"+
-                        "</tr>");
-            };
-        %>
-    </table>
+<table border="1">
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>pass</td>
+    </tr>
+    <%
+        for (User user : userArrayList) {
+            out.println("<tr>"
+                    + "<td>" + user.getUser_id() + "</td>" +
+                    "<td>" + user.getUser_name() + "</td>" +
+                    "<td>" + user.getUser_password() + "</td>" +
+                    "</tr>");
+        }
+        ;
+    %>
+</table>
 </body>
 </html>

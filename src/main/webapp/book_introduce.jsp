@@ -33,9 +33,11 @@
         <div id="logo">
             <!-- <img src="logoImage.png" alt="sample logo"> -->
             <!-- Company Logo text -->
-            <a href="bookstore_front_index.jsp" class="not_underline"> Home</a></div>
-        <div id="headerLinks"><a href="user_login.jsp" title="user"><img src="<%=session.getAttribute("user_image")%>" width="5%" height="5%"><%=session.getAttribute("user_name")%>
-        </a><a href="bookstore_shopping_cart.jsp" id="href_link" title="Cart">Cart</a>
+            <a href="front_index.jsp" class="not_underline"> Home</a></div>
+        <div id="headerLinks"><a href="user_login.jsp" title="user">
+            <img src="<%=session.getAttribute("user_image")%>" width="5%" height="5%">
+            <%=session.getAttribute("user_name")%>
+        </a><a href="shopping_cart.jsp" id="href_link" title="Cart">Cart</a>
         </div>
     </header>
     <section id="offer">
@@ -86,7 +88,7 @@
                     <br>
                     <p class="price">《<%=book_name%>》<br>￥ <%=book_price%>
                     </p>
-                    <p class="productContent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;库存：<%=book_number%>
+                    <p class="productContent"><img title="add to cart" src="images/cart.png" width="50" height="50" onclick="login()">     库存：<%=book_number%>
                         <br><%=book_introduce%>
                     </p>
                     <input type="button" name="button" value="Buy" class="buyButton" onclick="login()">
@@ -98,7 +100,9 @@
                             //至于为什么用到正则表达式，其实是因为...用模板做的前端，然后他div居然是嵌套的...这样就导致里面的内容有些杂，只能正则匹配了
                             //如果用户处于无登录状态，则跳转到用户登陆界面
                             if (user_name.includes("Login")) {
-                                window.location = "user_login.jsp";
+                                window.location = "user_login.jsp"
+                            } else {
+                                window.location = "shopping_cart.jsp"
                             }
                         }
                     </script>

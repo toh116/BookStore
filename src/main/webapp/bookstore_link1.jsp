@@ -68,9 +68,11 @@
         <div id="logo">
             <!-- <img src="logoImage.png" alt="sample logo"> -->
             <!-- Company Logo text -->
-            <a href="bookstore_front_index.jsp" class="not_underline"> Home</a></div>
-        <div id="headerLinks"><a href="user_login.jsp" title="user"><img src="<%=session.getAttribute("user_image")%>" width="5%" height="5%"><%=session.getAttribute("user_name")%>
-        </a><a href="bookstore_shopping_cart.jsp" title="Cart">Cart</a>
+            <a href="front_index.jsp" class="not_underline"> Home</a></div>
+        <div id="headerLinks"><a href="user_login.jsp" title="user"><img src="<%=session.getAttribute("user_image")%>"
+                                                                         width="5%"
+                                                                         height="5%"><%=session.getAttribute("user_name")%>
+        </a><a href="shopping_cart.jsp" title="Cart">Cart</a>
         </div>
     </header>
     <section id="offer">
@@ -119,17 +121,21 @@
         </section>
         <section class="mainContent">
             <div class="productRow"><!-- Each product row contains info of 3 elements -->
-                <%--                参照组--%>
-                <%--                <article class="productInfo"><!-- Each individual product description -->--%>
-                <%--                    <div><img alt="sample" src="<%=bookArrayList.get(0).getBook_picture()%>"></div>--%>
-                <%--                    <p class="price">《<%=bookArrayList.get(0).getBook_name()%>》</p>--%>
-                <%--                    <p class="productContent">￥ <%=bookArrayList.get(0).getBook_price()%></p>--%>
-                <%--                    <input type="button" name="button" value="Buy" class="buyButton">--%>
-                <%--                </article>--%>
+<%--                参照组--%>
+<%--                <div class="div_form">--%>
+<%--                    <article class="productInfo"><!-- Each individual product description -->--%>
+<%--                        <div><img alt="sample" src="<%=bookArrayList.get(0).getBook_picture()%>"></div>--%>
+<%--                        <p class="price">《<%=bookArrayList.get(0).getBook_name()%>》</p>--%>
+<%--                        <p class="productContent">￥ <%=bookArrayList.get(0).getBook_price()%>--%>
+<%--                        </p>--%>
+<%--                        <input type="button" name="button" value="Buy" class="buyButton">--%>
+<%--                    </article>--%>
+<%--                </div>--%>
                 <%
+                    //这里用out打印了一些书籍<div>
                     //flag不为false则说明集合不为空
                     //不为空就说明该子分类下有书籍
-                    //有书就打印,这里用out打印了该集合内所有的书籍<div>
+                    //有书就打印
                     if (book_exist) {
                         for (int i = 0; i < bookArrayList.size(); i++) {
                             out.println("<article class= productInfo>" +
