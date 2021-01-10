@@ -22,7 +22,7 @@ public class Connection_DataBase {
     private static PreparedStatement preparedStatement = null;
 
     //连接数据库的方法
-    public static Connection open() {
+    public Connection open() {
         try {
             //加载驱动
             Class.forName(JDBC_DRIVER);
@@ -37,7 +37,20 @@ public class Connection_DataBase {
         return null;
     }
 
-    public static ResultSet query(String sql) {
+    public void insert(String sql) {
+        //获取连接
+        Connection connection = open();//open的返回值是一个Connection类
+        try {
+            //预编译框架
+            preparedStatement = connection.prepareStatement(sql);
+            //执行更新
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ResultSet query(String sql) {
         //获取连接
         Connection connection = open();//open的返回值是一个Connection类
         try {

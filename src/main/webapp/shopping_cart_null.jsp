@@ -1,25 +1,6 @@
-<%@ page import="java.sql.ResultSet" %><%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2021/1/7
-  Time: 9:25
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="bookshop.suyu.Book" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<jsp:useBean id="bean_Connction_DataBase" class="bookshop.suyu.Connection_DataBase"></jsp:useBean>
-<%
-    //检测是否登录
-    if (session.getAttribute("user_name").equals("Login")) {
-        //如果用户没有登陆，则重定向到登录界面
-        response.sendRedirect("user_login.jsp");
-    } else {
-        String user_id = (String) session.getAttribute("user_id");
-        ResultSet resultSet = bean_Connction_DataBase.query("SELECT * FROM bookshop.shopping_cart, bookshop.book_list where user_id = "+user_id+" and shopping_cart.book_id = book_list.book_id;");
-        if (resultSet == null) {
-            response.sendRedirect("shopping_cart_null.jsp");
-        }
-    }
-%>
 <!doctype html>
 <html>
 <head>
@@ -44,13 +25,22 @@
     <div class="goods">
         <table>
             <tr>
-                <td width=20%>旁氏洗发露</td>
-                <td width=20%>图片1</td>
-                <td width=20%>99</td>
-                <td width=20%>1</td>
-                <td width=20%><a>
-                    <button class="btn1">删除</button>
-                </a></td>
+                <td width=12.5%></td>
+                <td width=12.5%></td>
+                <td width=50%>您的购物车还空着噢，赶快去购物吧！（棒读.jpg）</td>
+                <td width=12.5%></td>
+                <td width=12.5%></td>
+            </tr>
+        </table>
+    </div>
+    <div class="goods">
+        <table>
+            <tr>
+                <td width=20%></td>
+                <td width=20%></td>
+                <td width=20%></td>
+                <td width=20%></td>
+                <td width=20%></td>
             </tr>
         </table>
     </div>
@@ -63,8 +53,8 @@
                         Shopping Cart
                     </div>
                 </td>
-                <td width=200>商品总价：</td>
-                <td width=200>商品总数：</td>
+                <td width=200>商品总价：0</td>
+                <td width=200>商品总数：0</td>
             </tr>
 
         </table>
@@ -85,4 +75,3 @@
 </div>
 </body>
 </html>
-

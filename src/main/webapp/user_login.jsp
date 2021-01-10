@@ -29,7 +29,7 @@
             <div class="inputText">
                 <span class="iconfont icon-nickname"></span>
                 <label>
-                    <input name="user_id" type="text" placeholder="User name" value=""/>
+                    <input name="user_id" type="text" placeholder="User id" value=""/>
                 </label>
             </div>
             <div class="inputText">

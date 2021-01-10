@@ -1,8 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="bookshop.suyu.Book" %>
 <%@ page import="java.sql.ResultSet" %>
-<%@ page import="bookshop.suyu.BookType" %>
-<%@ page import="bookshop.suyu.Connection_DataBase" %><%--
+<%@ page import="bookshop.suyu.BookType" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2021/1/6
@@ -11,39 +10,35 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--使用javabean包装java类，将其引入到该页面中--%>
-<jsp:useBean id="bean_Connction_DataBase" scope="page" class="bookshop.suyu.Connection_DataBase"></jsp:useBean>
-<%--使用javabean包装java类，将其引入到该页面中--%>
-<jsp:useBean id="bean_book_type" scope="page" class="bookshop.suyu.BookType"></jsp:useBean>
-<%--查询book_manage(书籍分类)表的所有数据，返回一个结果集合resultSet_book_type--%>
-<% ResultSet resultSet_book_type = Connection_DataBase.query("select * from bookshop.book_manage");%>
+<jsp:useBean id="bean_Connction_DataBase" class="bookshop.suyu.Connection_DataBase"></jsp:useBean>
+<jsp:useBean id="bean_Book" class="bookshop.suyu.Book"></jsp:useBean>
 <%
-    //将session中name为"booklist_type1的信息赋值到集合，也就是类型1的所有书籍
-    ArrayList<Book> bookArrayList = (ArrayList<Book>) session.getAttribute("booklist_type1");
-    //用于标记某分类下类型书籍是否存在
-    boolean book_exist = true;
-    if (bookArrayList.size() == 0) {
-        //集合的size为0则说明该分类下没有书籍
-        book_exist = false;
-    }
-%>
-<%
+    ResultSet resultSet_book_type = bean_Connction_DataBase.query("select book_type from bookshop.book_manage");
+    ResultSet resultSet_book = bean_Connction_DataBase.query("select * from bookshop.book_list where book_type = 1");
+    ArrayList<Book> bookArrayList = new ArrayList<>();
     ArrayList<BookType> bookTypeArrayList = new ArrayList<>();
-    while (resultSet_book_type.next()) {
-        try {
-            //常规数据读取，list拿来装BookType对象
-            bean_book_type = new BookType();
-            bean_book_type.setType_id(resultSet_book_type.getString(1));
-            bean_book_type.setType_name(resultSet_book_type.getString(2));
-            //我在book_manage表中预先设置了book_type的值为null，后期如果想更改子分类的话直接把null改了就行
-            //如果book_type的值为null，说明没有管理员去更改子分类的名字，则默认该子分类名称为"未上架"
-            if (bean_book_type.getType_name().equals("null")) {
-                bean_book_type.setType_name("未上架");
-            }
-            bookTypeArrayList.add(bean_book_type);
-        } catch (Exception e) {
-            //抛出堆栈轨迹
-            e.printStackTrace();
-        }
+    //用于判断书本分类是否存在的布尔型变量
+    boolean book_exist = false;
+    while (resultSet_book.next()){
+        bean_Book = new Book();
+        bean_Book.setBook_id(resultSet_book.getString(1));
+        bean_Book.setBook_name(resultSet_book.getString(2));
+        bean_Book.setBook_subname(resultSet_book.getString(3));
+        bean_Book.setBook_introduce(resultSet_book.getString(4));
+        bean_Book.setBook_price(resultSet_book.getString(5));
+        bean_Book.setBook_picture(resultSet_book.getString(6));
+        bean_Book.setBook_number(resultSet_book.getString(7));
+        bean_Book.setBook_type(resultSet_book.getString(8));
+        bookArrayList.add(bean_Book);
+    }
+    if (bookArrayList!=null){
+        //书本分类存在
+        book_exist = true;
+    }
+    while (resultSet_book_type.next()){
+        BookType bookType = new BookType();
+        bookType.setType_name(resultSet_book_type.getString(1));
+        bookTypeArrayList.add(bookType);
     }
     //关闭数据库连接
     bean_Connction_DataBase.close();
@@ -60,7 +55,6 @@
     <script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js"
             type="text/javascript"></script>
 </head>
-
 <body>
 <div id="mainWrapper">
     <header>
@@ -69,9 +63,7 @@
             <!-- <img src="logoImage.png" alt="sample logo"> -->
             <!-- Company Logo text -->
             <a href="front_index.jsp" class="not_underline"> Home</a></div>
-        <div id="headerLinks"><a href="user_login.jsp" title="user"><img src="<%=session.getAttribute("user_image")%>"
-                                                                         width="5%"
-                                                                         height="5%"><%=session.getAttribute("user_name")%>
+        <div id="headerLinks"><a href="user_login.jsp" title="user"><img src="<%=session.getAttribute("user_image")%>" width="5%" height="5%"><%=session.getAttribute("user_name")%>
         </a><a href="shopping_cart.jsp" title="Cart">Cart</a>
         </div>
     </header>
@@ -88,20 +80,20 @@
                 <nav class="menu">
                     <h2>
                         <!-- Title for menuset 1 -->
-                        科普教育&nbsp;</h2>
+                        科普教育</h2>
                     <hr>
                     <ul>
                         <!-- List of links under menuset 1 -->
-                        <li><a href="bookstore_link1.jsp" title="Link">程序设计类&nbsp;</a></li>
-                        <li><a href="bookstore_link2.jsp" title="Link">教育类</a></li>
-                        <li><a href="bookstore_link3.jsp" title="Link">经营类</a></li>
+                        <li><a href="bookstore_link1.jsp" title="Link"><%=bookTypeArrayList.get(0).getType_name()%></a></li>
+                        <li><a href="bookstore_link2.jsp" title="Link"><%=bookTypeArrayList.get(1).getType_name()%></a></li>
+                        <li><a href="bookstore_link3.jsp" title="Link"><%=bookTypeArrayList.get(2).getType_name()%></a></li>
                         <li class="notimp">
                             <!-- notimp class is applied to remove this link from the tablet and phone views --><a
-                                href="bookstore_link4.jsp" title="Link">生活类&nbsp;</a></li>
+                                href="bookstore_link4.jsp" title="Link"><%=bookTypeArrayList.get(3).getType_name()%></a></li>
                     </ul>
                 </nav>
                 <nav class="menu">
-                    <h2>其他&nbsp; </h2>
+                    <h2>其他</h2>
                     <!-- Title for menuset 2 -->
                     <hr>
                     <ul>
@@ -132,18 +124,10 @@
 <%--                    </article>--%>
 <%--                </div>--%>
                 <%
-                    //这里用out打印了一些书籍<div>
-                    //flag不为false则说明集合不为空
-                    //不为空就说明该子分类下有书籍
-                    //有书就打印
                     if (book_exist) {
                         for (int i = 0; i < bookArrayList.size(); i++) {
                             out.println("<article class= productInfo>" +
-                                    "<div>" + "<a href=book_introduce.jsp?book_name=" + bookArrayList.get(i).getBook_name() +
-                                    "&book_picture=" + bookArrayList.get(i).getBook_picture() +
-                                    "&book_price=" + bookArrayList.get(i).getBook_price() +
-                                    "&book_number=" + bookArrayList.get(i).getBook_number() +
-                                    "&book_introduce=" + bookArrayList.get(i).getBook_introduce() +
+                                    "<div>" + "<a href=book_introduce.jsp?book_id=" + bookArrayList.get(i).getBook_id() +
                                     " style=color:grey;text-decoration:none;>" +
                                     "<img alt= sample src=" + bookArrayList.get(i).getBook_picture() + "></div>" +
                                     "<p class= price>《" + bookArrayList.get(i).getBook_name() + "》</p>" +
