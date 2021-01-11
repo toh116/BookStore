@@ -11,9 +11,9 @@ public class Connection_DataBase {
     //驱动地址
     private static final String DB_URL = "jdbc:mysql://localhost:3306/bookshop?useUnicode=true&characterEncoding=utf8";
     //用户名
-    private static final String USER = "suyu";
+    private static final String USER = "root";
     //密码
-    private static final String PASSWORD = "Aa12310718sawako.";
+    private static final String PASSWORD = "root";
     //连接对象connection
     private static final Connection connection = null;
     //结果集
