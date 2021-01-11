@@ -1,22 +1,17 @@
+<%--jsp常规导入--%>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="bookshop.suyu.Book" %>
 <%@ page import="java.sql.SQLException" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2021/1/6
-  Time: 13:16
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%--使用javabean包装java类，将其引入到该页面中--%>
+<%--使用javabean包装java类，将其引入到该脚本中--%>
 <jsp:useBean id="bean_Connction_DataBase" class="bookshop.suyu.Connection_DataBase"></jsp:useBean>
 <%--查询book表的所有数据，返回一个结果集合resultSet_book--%>
 <% ResultSet resultSet_book = bean_Connction_DataBase.query("select * from bookshop.book_list");%>
 <%
-    //设置默认登陆状态为无用户登录
+    //设置默认为游客状态
     if (session.getAttribute("user_name") == null) {
+        //定义一种规则，用户名为Login则视为无登录，其实是偷懒.jpg
         session.setAttribute("user_name", "Login");
     }
     //设置默认头像为游客头像
@@ -73,6 +68,7 @@
             <img src="images/admin_picture.png" alt="" width="25%" height="25%" onclick=call_me()></div>
         <script>
             function call_me() {
+                //常规js函数，页面切换
                 window.location = "bookstore_call_me.jsp";
             }
         </script>
@@ -88,33 +84,38 @@
     <!-- Stats Gallery Section -->
     <div class="gallery">
         <%
-            int[] A = {23,0,33,22,40};
+            //一个数组，用于访问集合内的指定对象，主要是想让特定的书本显示在首页
+            int[] A = {23, 0, 33, 22, 40};
+            //通过out.println()方法打印这些书本<div>
             for (int i = 0; i < 4; i++) {
-                out.println("<div class= thumbnail><a href=book_introduce.jsp?book_id="+bookArrayList.get(A[i]).getBook_id()+">"+
-                        " <img src= "+bookArrayList.get(A[i]).getBook_picture()+" width= 350 height= 200 class= cards/></a>" +
-                        " <h4>"+bookArrayList.get(A[i]).getBook_name()+
+                out.println("<div class= thumbnail><a href=book_introduce.jsp?book_id=" + bookArrayList.get(A[i]).getBook_id() + ">" +
+                        " <img src= " + bookArrayList.get(A[i]).getBook_picture() + " width= 350 height= 200 class= cards/></a>" +
+                        " <h4>" + bookArrayList.get(A[i]).getBook_name() +
                         " </h4>" +
-                        " <p class= tag>+"+bookArrayList.get(A[i]).getBook_subname()+
+                        " <p class= tag>+" + bookArrayList.get(A[i]).getBook_subname() +
                         " </p>" +
-                        " <p class= text_column>"+bookArrayList.get(A[i]).getBook_introduce()+
+                        " <p class= text_column>" + bookArrayList.get(A[i]).getBook_introduce() +
                         " </p>" +
                         "</div>"
                 );
             }
         %>
         <%
+            //通过out.println()方法打印这些书本<div>
             for (int i = 10; i < bookArrayList.size(); i++) {
-                out.println("<div class= thumbnail><a href=book_introduce.jsp?book_id="+bookArrayList.get(i).getBook_id()+">"+
-        " <img src= "+bookArrayList.get(i).getBook_picture()+" width= 350 height= 200 class= cards/></a>" +
-        " <h4>"+bookArrayList.get(i).getBook_name()+
-        " </h4>" +
-        " <p class= tag>+"+bookArrayList.get(i).getBook_subname()+
-        " </p>" +
-        " <p class= text_column>"+bookArrayList.get(i).getBook_introduce()+
-        " </p>" +
-    "</div>"
-    );
+                out.println("<div class= thumbnail><a href=book_introduce.jsp?book_id=" + bookArrayList.get(i).getBook_id() + ">" +
+                        " <img src= " + bookArrayList.get(i).getBook_picture() + " width= 350 height= 200 class= cards/></a>" +
+                        " <h4>" + bookArrayList.get(i).getBook_name() +
+                        " </h4>" +
+                        " <p class= tag>+" + bookArrayList.get(i).getBook_subname() +
+                        " </p>" +
+                        " <p class= text_column>" + bookArrayList.get(i).getBook_introduce() +
+                        " </p>" +
+                        "</div>"
+                );
             }
+            //关闭out流
+            out.close();
         %>
     </div>
     <!-- Footer Section -->

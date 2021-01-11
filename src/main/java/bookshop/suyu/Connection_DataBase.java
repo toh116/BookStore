@@ -37,7 +37,7 @@ public class Connection_DataBase {
         return null;
     }
 
-    public void insert(String sql) {
+    public void update(String sql) {
         //获取连接
         Connection connection = open();//open的返回值是一个Connection类
         try {

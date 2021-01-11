@@ -20,7 +20,7 @@ import java.sql.ResultSet;
             //表中第3列存的是用户密码，这里是用于比对输入密码和数据库中的密码是否一致
             if (user_password.equals(resultSet.getString(3))) {
                 //若一致则将将用户名保存到session中
-                session.setAttribute("user_id",resultSet.getString(1));
+                session.setAttribute("user_id", resultSet.getString(1));
                 session.setAttribute("user_name", resultSet.getString(2));
                 //如果用户没有设置头像的话，将其头像设置为默认头像，否则设置为用户的头像
                 if (resultSet.getString(4) == null || resultSet.getString(4).equals("")) {

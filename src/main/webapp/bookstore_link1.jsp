@@ -13,13 +13,17 @@
 <jsp:useBean id="bean_Connction_DataBase" class="bookshop.suyu.Connection_DataBase"></jsp:useBean>
 <jsp:useBean id="bean_Book" class="bookshop.suyu.Book"></jsp:useBean>
 <%
+    //根据指定sql语句查询结果
     ResultSet resultSet_book_type = bean_Connction_DataBase.query("select book_type from bookshop.book_manage");
     ResultSet resultSet_book = bean_Connction_DataBase.query("select * from bookshop.book_list where book_type = 1");
+    //Book型的list集合
     ArrayList<Book> bookArrayList = new ArrayList<>();
+    //BookType型的list集合
     ArrayList<BookType> bookTypeArrayList = new ArrayList<>();
     //用于判断书本分类是否存在的布尔型变量
     boolean book_exist = false;
-    while (resultSet_book.next()){
+    while (resultSet_book.next()) {
+        //移动游标获取结果集中的数据，存入Book对象
         bean_Book = new Book();
         bean_Book.setBook_id(resultSet_book.getString(1));
         bean_Book.setBook_name(resultSet_book.getString(2));
@@ -31,11 +35,11 @@
         bean_Book.setBook_type(resultSet_book.getString(8));
         bookArrayList.add(bean_Book);
     }
-    if (bookArrayList!=null){
+    if (bookArrayList != null) {
         //书本分类存在
         book_exist = true;
     }
-    while (resultSet_book_type.next()){
+    while (resultSet_book_type.next()) {
         BookType bookType = new BookType();
         bookType.setType_name(resultSet_book_type.getString(1));
         bookTypeArrayList.add(bookType);
@@ -63,7 +67,9 @@
             <!-- <img src="logoImage.png" alt="sample logo"> -->
             <!-- Company Logo text -->
             <a href="front_index.jsp" class="not_underline"> Home</a></div>
-        <div id="headerLinks"><a href="user_login.jsp" title="user"><img src="<%=session.getAttribute("user_image")%>" width="5%" height="5%"><%=session.getAttribute("user_name")%>
+        <div id="headerLinks"><a href="user_login.jsp" title="user"><img src="<%=session.getAttribute("user_image")%>"
+                                                                         width="5%"
+                                                                         height="5%"><%=session.getAttribute("user_name")%>
         </a><a href="shopping_cart.jsp" title="Cart">Cart</a>
         </div>
     </header>
@@ -84,12 +90,16 @@
                     <hr>
                     <ul>
                         <!-- List of links under menuset 1 -->
-                        <li><a href="bookstore_link1.jsp" title="Link"><%=bookTypeArrayList.get(0).getType_name()%></a></li>
-                        <li><a href="bookstore_link2.jsp" title="Link"><%=bookTypeArrayList.get(1).getType_name()%></a></li>
-                        <li><a href="bookstore_link3.jsp" title="Link"><%=bookTypeArrayList.get(2).getType_name()%></a></li>
+                        <li><a href="bookstore_link1.jsp" title="Link"><%=bookTypeArrayList.get(0).getType_name()%>
+                        </a></li>
+                        <li><a href="bookstore_link2.jsp" title="Link"><%=bookTypeArrayList.get(1).getType_name()%>
+                        </a></li>
+                        <li><a href="bookstore_link3.jsp" title="Link"><%=bookTypeArrayList.get(2).getType_name()%>
+                        </a></li>
                         <li class="notimp">
                             <!-- notimp class is applied to remove this link from the tablet and phone views --><a
-                                href="bookstore_link4.jsp" title="Link"><%=bookTypeArrayList.get(3).getType_name()%></a></li>
+                                href="bookstore_link4.jsp" title="Link"><%=bookTypeArrayList.get(3).getType_name()%>
+                        </a></li>
                     </ul>
                 </nav>
                 <nav class="menu">
@@ -113,17 +123,18 @@
         </section>
         <section class="mainContent">
             <div class="productRow"><!-- Each product row contains info of 3 elements -->
-<%--                参照组--%>
-<%--                <div class="div_form">--%>
-<%--                    <article class="productInfo"><!-- Each individual product description -->--%>
-<%--                        <div><img alt="sample" src="<%=bookArrayList.get(0).getBook_picture()%>"></div>--%>
-<%--                        <p class="price">《<%=bookArrayList.get(0).getBook_name()%>》</p>--%>
-<%--                        <p class="productContent">￥ <%=bookArrayList.get(0).getBook_price()%>--%>
-<%--                        </p>--%>
-<%--                        <input type="button" name="button" value="Buy" class="buyButton">--%>
-<%--                    </article>--%>
-<%--                </div>--%>
+                <%--                参照组--%>
+                <%--                <div class="div_form">--%>
+                <%--                    <article class="productInfo"><!-- Each individual product description -->--%>
+                <%--                        <div><img alt="sample" src="<%=bookArrayList.get(0).getBook_picture()%>"></div>--%>
+                <%--                        <p class="price">《<%=bookArrayList.get(0).getBook_name()%>》</p>--%>
+                <%--                        <p class="productContent">￥ <%=bookArrayList.get(0).getBook_price()%>--%>
+                <%--                        </p>--%>
+                <%--                        <input type="button" name="button" value="Buy" class="buyButton">--%>
+                <%--                    </article>--%>
+                <%--                </div>--%>
                 <%
+                    //如果这个类型的书本存在，就out这些书本div
                     if (book_exist) {
                         for (int i = 0; i < bookArrayList.size(); i++) {
                             out.println("<article class= productInfo>" +
@@ -136,6 +147,8 @@
                                     "</article>");
                         }
                     }
+                    //关闭out流
+                    out.close();
                 %>
             </div>
         </section>

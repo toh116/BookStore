@@ -8,16 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <jsp:useBean id="bean_Connction_DataBase" class="bookshop.suyu.Connection_DataBase"></jsp:useBean>
 <%
+    ResultSet resultSet = null;
     //检测是否登录
     if (session.getAttribute("user_name").equals("Login")) {
         //如果用户没有登陆，则重定向到登录界面
         response.sendRedirect("user_login.jsp");
     } else {
+        //获取用户id，不同的用户购物车也不同
         String user_id = (String) session.getAttribute("user_id");
-        ResultSet resultSet = bean_Connction_DataBase.query("SELECT * FROM bookshop.shopping_cart, bookshop.book_list where user_id = "+user_id+" and shopping_cart.book_id = book_list.book_id;");
-        if (resultSet == null) {
-            response.sendRedirect("shopping_cart_null.jsp");
-        }
+        //查询该用户购物车中的记录
+        resultSet = bean_Connction_DataBase.query("SELECT book_name, book_picture, book_price, book_number FROM bookshop.shopping_cart, bookshop.book_list where user_id = " + user_id + " and shopping_cart.book_id = book_list.book_id;");
     }
 %>
 <!doctype html>
@@ -40,20 +40,63 @@
             </tr>
         </table>
     </div>
-    <%--参照组--%>
-    <div class="goods">
-        <table>
-            <tr>
-                <td width=20%>旁氏洗发露</td>
-                <td width=20%>图片1</td>
-                <td width=20%>99</td>
-                <td width=20%>1</td>
-                <td width=20%><a>
-                    <button class="btn1">删除</button>
-                </a></td>
-            </tr>
-        </table>
-    </div>
+    <%--参照组，子div--%>
+    <%--    <div class="goods">--%>
+    <%--        <table>--%>
+    <%--            <tr>--%>
+    <%--                <td width=20% height="50">旁氏洗发露</td>--%>
+    <%--                <td width=20% height="50">图片1</td>--%>
+    <%--                <td width=20% height="50">99</td>--%>
+    <%--                <td width=20% height="50">1</td>--%>
+    <%--                <td width=20% height="50"><a href="">--%>
+    <%--                    <button class="btn1">删除</button>--%>
+    <%--                </a></td>--%>
+    <%--            </tr>--%>
+    <%--        </table>--%>
+    <%--    </div>--%>
+    <%
+        //初始化购物车中商品的总价、总数
+        int sum = 0;int number = 0;
+        //移动游标打印表格
+        while (resultSet!=null && resultSet.next()) {
+            //打印表格
+            out.println("<div class=goods>" +
+                    "<table>"
+                    + "<tr>"
+                    + "<td width=20% height=50" + ">《" + resultSet.getString(1) + "》</td>"
+                    + "<td width=20% height=50" + ">" + "<img src=" + resultSet.getString(2) + " width=50 height=50" + "></td>"
+                    + "<td width=20% height=50" + ">" + resultSet.getString(3) + "</td>"
+                    + "<td width=20% height=50" + ">1</td>"
+                    + "<td width=20% height=50" + "><a href=>"
+                    + " <button class=btn1>删除</button>"
+                    + "</a></td>"
+                    + "</tr>"
+                    + "</table>"
+                    + "</div>"
+                    + "<div class=goods>" +
+                    "<table>"
+                    + "<tr>"
+                    + "<td width=20% " + "></td>"
+                    + "<td width=20% " + "></td>"
+                    + "<td width=20% " + "></td>"
+                    + "<td width=20% " + "></td>"
+                    + "<td width=20% " + "></td>"
+                    + "</tr>"
+                    + "</table>"
+                    + "</div>"
+            );
+            //计算总价
+            sum = sum + Integer.valueOf(resultSet.getString(3));
+            //计算总数
+            number = number + 1;
+        }
+    %>
+    <%
+        //如果价格为0，则说明购物车为空，跳入指定jsp脚本
+        if (sum == 0) {
+            response.sendRedirect("shopping_cart_null.jsp");
+        }
+    %>
     <div class="goods2">
         <table>
             <tr>
@@ -63,8 +106,8 @@
                         Shopping Cart
                     </div>
                 </td>
-                <td width=200>商品总价：</td>
-                <td width=200>商品总数：</td>
+                <td width=200>商品总价：<%=sum%>  元</td>
+                <td width=200>商品总数：<%=number%> 件</td>
             </tr>
 
         </table>
